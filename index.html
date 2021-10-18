@@ -2,12 +2,17 @@
     <head>
         <script src="jquery.js"></script> 
         <script> 
-        $(function(){
-            $("#header").load("module/header.html"); 
-        });
+        $(function () {
+            var includes = $('[module]')
+            $.each(includes, function () {
+                var file = 'module/' + $(this).data('include') + '.html'
+                $(this).load(file)
+            })
+        })
         </script>
     </head>
     <body>
-        <div id="header"></div>
+        <div module="header"></div>
+        <div module ="footer"></div>
     </body>
 </html>

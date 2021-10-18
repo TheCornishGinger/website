@@ -51,11 +51,11 @@
 .box.menu {
   margin-top: 5px !important;
 }
-.boxIMG {
-  width: -webkit-fill-available;
-  margin-top: 2px;
+.box-image {
+  width: inherit;
+  margin-top: 1px;
 }
-.boxText {
+.box-text {
   margin: 0;
   font-size: 2vw;
   color: inherit;
