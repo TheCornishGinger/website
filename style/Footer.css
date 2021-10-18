@@ -1,0 +1,14 @@
+.container {
+  display: grid;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.social {
+  width: 50px;
+  margin: 10px;
+}
+
+.socialWrap {
+  margin: auto;
+}

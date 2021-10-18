@@ -1,0 +1,104 @@
+.placeholder {
+  height: 80px;
+  width: 100%;
+}
+
+.headerTop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: rgb(36, 36, 36);
+  height: 80px;
+}
+.headerSide {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  width: 80px;
+  height: 100%;
+  background-color: rgb(25, 25, 25);
+}
+
+.flex {
+  display: block;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  height: 100%;
+}
+
+.box {
+  background-color: rgb(46, 134, 175);
+  margin: auto;
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.box.logo {
+  background-color: rgb(224, 102, 61) !important;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+  display: block !important;
+}
+.box.menu {
+  margin-top: 5px !important;
+}
+.boxIMG {
+  width: -webkit-fill-available;
+  margin-top: 2px;
+}
+.boxText {
+  margin: 0;
+  font-size: 2vw;
+  color: inherit;
+  text-align: center;
+}
+
+.title {
+  font-size: 70px;
+  color: rgb(222, 80, 33);
+  font-family: 'reklame';
+  margin: 0;
+  font-size: 60px;
+}
+.smallTitle {
+  display: none;
+}
+.smallTitleText {
+  margin: 0;
+}
+
+.tableItem {
+  width: 120px;
+  font-weight: normal;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media only screen and (max-width: 500px) {
+  .smallTitle {
+    display: block;
+    font-size: 30px;
+    color: rgb(222, 80, 33);
+    font-family: 'reklame';
+    text-align: center;
+    margin: auto;
+  }
+  .title {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .headerSide {
+    display: none;
+  }
+}
