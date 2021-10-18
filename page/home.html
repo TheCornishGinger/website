@@ -1,20 +1,34 @@
-<div className="container">
-    <Head>
+<html>
+    <head>
+        <script src="../jquery.js"></script> 
+        <script> 
+        $(function(){
+            $("#header").load("../module/header.html"); 
+        });
+        </script>
+
         <title>TheCornishGinger</title>
-        <link rel="icon" href="/icon.ico" />
-    </Head>
+        <link rel="icon" href="../resource/image/icon.ico" />
+        <link rel="stylesheet" href="../style/global.css">
+        <link rel="stylesheet" href="../style/home.css">
+    </head>
 
-    <Header />
+    <body>
+    <div class="container">
 
-    <main>
-        <p className="text large">The home of</p>
-        <img className={css.image} src="/img/logo.gif" />
-        <p className="text medium">
-            This is my personal site where I like to host a whole load of random ass stuff. 
-            I trust you will enjoy searching through my unfinished, unpolished and mostly 
-            useless creations!
-        </p>
-    </main>
+        <div id="header"></div>
 
-    <Footer />
-</div>
+        <main>
+            <p class="text large">The home of</p>
+            <img class="image" src="../resource/image/logo.gif" />
+            <p class="text medium">
+                This is my personal site where I like to host a whole load of random ass stuff. 
+                I trust you will enjoy searching through my unfinished, unpolished and mostly 
+                useless creations!
+            </p>
+        </main>
+
+        <div data-include="footer"></div>
+    </div>
+    <body>
+</html>
