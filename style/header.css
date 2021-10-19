@@ -4,10 +4,13 @@
   --side-header-color: rgb(25, 25, 25);
   --logo-color: rgb(224, 102, 61);
   --title-color: rgb(222, 80, 33);
+
+  --header-size: 10vw;
+  --side-header-offset: 0;
 }
 
 .placeholder-top {
-  height: 80px;
+  height: var(--header-size);
   width: 100%;
 }
 
@@ -17,7 +20,7 @@
   top: 0;
   width: 100%;
   background-color: var(--top-header-color);
-  height: 80px;
+  height: var(--header-size);
 }
 
 .top-header-wrap.outer {
@@ -34,9 +37,9 @@
 
 .side-header {
   position: fixed;
-  left: 0;
-  top: 80px;
-  width: 80px;
+  left: var(--side-header-offset); 
+  top: var(--header-size);
+  width: var(--header-size);
   height: 100%;
   background-color: var(--side-header-color);
 }
@@ -44,8 +47,8 @@
 .box {
   background-color: var(--menu-box-color);
   margin: auto;
-  width: 60px;
-  height: 60px;
+  width: calc(var(--header-size) - var(--header-size) / 5);
+  height: calc(var(--header-size) - var(--header-size) / 5);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -53,14 +56,14 @@
 }
 .box.logo {
   background-color: var(--logo-color) !important;
-  margin-left: 5px !important;
-  margin-right: 5px !important;
+  margin-left: calc(var(--header-size) / 10) !important;
+  margin-right: calc(var(--header-size) / 10) !important;
   display: block !important;
-  width: 70px !important;
-  height: 70px !important;
+  width: calc(var(--header-size) - var(--header-size) / 5) !important;
+  height: calc(var(--header-size) - var(--header-size) / 5) !important;
 }
 .box.menu {
-  margin-top: 5px !important;
+  margin-top: calc(var(--header-size) / 10) !important;
 }
 .box-image {
   width: inherit;
@@ -79,7 +82,7 @@
   color: var(--title-color);
   font-family: 'reklame';
   margin: 0;
-  font-size: 60px;
+  font-size: calc(var(--header-size) / 1.5);
 }
 .smallTitle {
   display: none;
@@ -98,7 +101,7 @@
 @media only screen and (max-width: 500px) {
   .smallTitle {
     display: block;
-    font-size: 30px;
+    font-size: calc(var(--header-size) / 3);
     color: var(--title-color);
     font-family: 'reklame';
     text-align: center;
