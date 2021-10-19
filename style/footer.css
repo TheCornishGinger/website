@@ -1,14 +1,14 @@
-.container {
+.footer-wrap {
   display: grid;
   justify-content: center;
-  margin-top: auto;
+  background-color: rgb(16,16,16);
 }
 
-.social {
+.footer-social-icon {
   width: 50px;
   margin: 10px;
 }
 
-.socialWrap {
+.footer-social-wrap {
   margin: auto;
 }

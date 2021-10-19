@@ -1,18 +1,27 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <script src="jquery.js"></script> 
-        <script> 
-        $(function () {
-            var includes = $('[module]')
-            $.each(includes, function () {
-                var file = 'module/' + $(this).data('include') + '.html'
-                $(this).load(file)
-            })
-        })
-        </script>
+        
+        <link rel="icon" href="/resource/image/icon.ico" />
+        <link rel="stylesheet" href="/style/global.css" />
+
+        <title>TheCornishGinger - Home</title>
+        <link rel="stylesheet" href="/style/home.css" />
     </head>
+
     <body>
-        <div module="header"></div>
-        <div module ="footer"></div>
-    </body>
+        <script src="/script/header.js"></script>
+
+        <div class="page">
+            <p class="text large">The home of</p>
+            <img class="image" src="/resource/image/logo.gif" />
+            <p class="text medium">
+                This is my personal site where I like to host a whole load of random ass stuff. 
+                I trust you will enjoy searching through my unfinished, unpolished and mostly 
+                useless creations!
+            </p>
+        </div>
+        
+        <script src="/script/footer.js"></script>
+    <body>
 </html>

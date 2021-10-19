@@ -1,52 +1,63 @@
-.placeholder {
+:root {
+  --menu-box-color: gray;
+  --top-header-color: rgb(36, 36, 36);
+  --side-header-color: rgb(25, 25, 25);
+  --logo-color: rgb(224, 102, 61);
+  --title-color: rgb(222, 80, 33);
+}
+
+.placeholder-top {
   height: 80px;
   width: 100%;
 }
 
-.headerTop {
+.top-header {
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
-  background-color: rgb(36, 36, 36);
+  background-color: var(--top-header-color);
   height: 80px;
 }
-.headerSide {
-  position: fixed;
-  left: 0;
-  top: 80px;
-  width: 80px;
-  height: 100%;
-  background-color: rgb(25, 25, 25);
-}
 
-.flex {
+.top-header-wrap.outer {
   display: block;
   height: 100%;
 }
 
-.content {
+.top-header-wrap.inner {
   display: flex;
   align-items: center;
   margin: auto;
   height: 100%;
 }
 
+.side-header {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  width: 80px;
+  height: 100%;
+  background-color: var(--side-header-color);
+}
+
 .box {
-  background-color: rgb(46, 134, 175);
+  background-color: var(--menu-box-color);
   margin: auto;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 .box.logo {
-  background-color: rgb(224, 102, 61) !important;
+  background-color: var(--logo-color) !important;
   margin-left: 5px !important;
   margin-right: 5px !important;
   display: block !important;
+  width: 70px !important;
+  height: 70px !important;
 }
 .box.menu {
   margin-top: 5px !important;
@@ -56,6 +67,7 @@
   margin-top: 1px;
 }
 .box-text {
+  display: none;
   margin: 0;
   font-size: 2vw;
   color: inherit;
@@ -64,7 +76,7 @@
 
 .title {
   font-size: 70px;
-  color: rgb(222, 80, 33);
+  color: var(--title-color);
   font-family: 'reklame';
   margin: 0;
   font-size: 60px;
@@ -87,7 +99,7 @@
   .smallTitle {
     display: block;
     font-size: 30px;
-    color: rgb(222, 80, 33);
+    color: var(--title-color);
     font-family: 'reklame';
     text-align: center;
     margin: auto;
