@@ -23,13 +23,14 @@ var headerCloseAnim = [sideHeaderOffset[0],0,-headerSize[2],1,"vw"];
 let root = document.documentElement;
 document.onmousemove = mouseMoveHandler;
 document.getElementById("html").onmouseleave = screenLostFocus;
+document.getElementById("html").onmouseenter = screenRefocus;
 
 
 
 
 function init() {
     setStyle(menuBoxColor);
-    setStyle(headerSize);
+    //setStyle(headerSize);
     setStyle([sideHeaderOffset[0],headerSize[1],-headerSize[2]]);
 
     console.log("Header loaded.")
@@ -120,11 +121,22 @@ function mouseMoveHandler(event) {
     }
 }
 
+var screenFocusState;
 function screenLostFocus() {
-    if(headerOpen) { //close header when mouse leaves page
-        headerOpen = false;
+    screenFocusState = false;
+
+    if(headerOpen) {
+        setTimeout(function(){
+            if(!screenFocusState) {
+                headerOpen = false;
         animate(headerCloseAnim);
+            }
+        }, 1000);
     }
+}
+
+function screenRefocus() {
+    screenFocusState = true;
 }
 
 function gamesBtn() {

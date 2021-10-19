@@ -45,13 +45,12 @@
 }
 
 .side-header-text {
-  position: relative;
-  left: calc(var(--header-size)/1.2);
+  left: calc(var(--header-size)/2);
   top: calc(50vh - var(--header-size));
-  font-size: 2vw;
+  font-size: calc(var(--header-size)/4);
   color: gray;
-  text-orientation: upright;
-  writing-mode: sideways-rl;
+  transform: rotate(90deg);
+  width: max-content;
   position: absolute;
 }
 
