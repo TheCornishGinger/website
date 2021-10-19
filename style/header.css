@@ -44,6 +44,17 @@
   background-color: var(--side-header-color);
 }
 
+.side-header-text {
+  position: relative;
+  left: calc(var(--header-size)/1.2);
+  top: calc(50vh - var(--header-size));
+  font-size: 2vw;
+  color: gray;
+  text-orientation: upright;
+  writing-mode: sideways-rl;
+  position: absolute;
+}
+
 .box {
   background-color: var(--menu-box-color);
   margin: auto;
