@@ -13,12 +13,6 @@ let headerSize = ["--header-size","px",80];
 
 
 
-// ANIMAITONS
-var headerOpenAnim = [sideHeaderOffset[0],-headerSize[2],0,0.2,"px"];
-var headerCloseAnim = [sideHeaderOffset[0],0,-headerSize[2],0.2,"px"];
-
-
-
 // DOM
 let rootDOM = document.documentElement;
 let htmlDOM = document.getElementById("html");
@@ -44,7 +38,13 @@ function init() {
 }
 
 
+
+
+// DEPRECATED
 /*
+var headerOpenAnim = [sideHeaderOffset[0],-headerSize[2],0,0.2,"px"];
+var headerCloseAnim = [sideHeaderOffset[0],0,-headerSize[2],0.2,"px"];
+
 function animate([property, start, end, delay, type]) {
     animationCache.push([property, start, end, delay, type]);
 
@@ -95,21 +95,21 @@ function setStyle([property, type, value]) {
     else {
         value = String(value)+type;
     }
-    root.style.setProperty(property, value);
+    rootDOM.style.setProperty(property, value);
 }
+
+
 
 function mouseMoveHandler(event) {
     let distance = headerSize[2]*2;
     var x = event.pageX;
     
-    if(x <= distance && !headerOpen && checkAnimCache(headerOpenAnim) == null) {
+    if(x <= distance && !headerOpen) {
         headerOpen = true;
-        //animate(headerOpenAnim);
         sideHeaderDOM.style.animationName="openSideHeader";
     }
-    else if(x > distance && headerOpen && checkAnimCache(headerCloseAnim) == null) {
+    else if(x > distance && headerOpen) {
         headerOpen = false;
-        //animate(headerCloseAnim);
         sideHeaderDOM.style.animationName="closeSideHeader";
     }
 }
@@ -124,7 +124,6 @@ function screenLostFocus() {
         setTimeout(function(){
             if(!screenFocusState) {
                 headerOpen = false;
-        //animate(headerCloseAnim);
         sideHeaderDOM.style.animationName="closeSideHeader";
             }
         }, 1000);
@@ -161,7 +160,6 @@ function updateHeaderSize() {
             pos = i;
         };
     }
-    console.log("SHORTEST", adjust[pos]);
     
     headerSize[2] = adjust[pos][1];
     setStyle(headerSize);
