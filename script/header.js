@@ -1,19 +1,31 @@
-// Load header.html
+// INJECT HTML INTO PAGE
 var ajax = new XMLHttpRequest();
 ajax.open("GET", "/module/header.html", false);
 ajax.send();
 document.body.innerHTML += ajax.responseText;
 
 
-// Adjust header objects
+
+// CSS VARIABLES
 let menuBoxColor = ["--menu-box-color","rgba",[46, 134, 175, 0.5]];
 let headerSize = ["--header-size","vw",10];
 let sideHeaderOffset = ["--side-header-offset","px",0];
 
-let root = document.documentElement;
-let items = document.getElementsByClassName("box menu");
 
+
+// ANIMAITONS
+var headerOpenAnim = [sideHeaderOffset[0],-headerSize[2],0,1,"vw"];
+var headerCloseAnim = [sideHeaderOffset[0],0,-headerSize[2],1,"vw"];
+
+
+
+// DOM
+let root = document.documentElement;
 document.onmousemove = mouseMoveHandler;
+document.getElementById("html").onmouseleave = screenLostFocus;
+
+
+
 
 function init() {
     setStyle(menuBoxColor);
@@ -23,12 +35,17 @@ function init() {
     console.log("Header loaded.")
 }
 
+
+// ANIMAITON
 var animationActive = false;
 var animationCache = [];
-function animate(property, start, end, delay, type) {
-    console.log(property, start, end, delay, type);
+function animate([property, start, end, delay, type]) {
+    //console.log(property, start, end, delay, type);
+
+    animationCache.push([property, start, end, delay, type]);
+    //console.log("cached", [property, start, end, delay, type]);
+
     if(!animationActive) {
-        console.log("started");
         animationActive = true;
         delay = delay*1000;
 
@@ -43,22 +60,27 @@ function animate(property, start, end, delay, type) {
                 if(stage > end) { stage--; }
                 setStyle([property, type, stage])
                 if(stage == end) {
-                    console.log("finished");
+                    var item, pos = checkAnimCache([property, start, end, delay, type]);
+                    animationCache.splice(pos,1);
                     animationActive = false;
                     if(animationCache.length > 0) {
-                        console.log("run cache");
-                        var item = animationCache.pop();
-                        console.log(item);
-                        animate(item);
+                        animate(animationCache.pop());
                     }
                 }
             },(delay/100)*i);
         }
     }
-    else {
-        animationCache.push([property, start, end, delay, type]);
-        console.log("cached");
+}
+
+function checkAnimCache(item) {
+    //console.log("check",item);
+    for(i=0; i < animationCache.length; i++) {
+        if(JSON.stringify(animationCache[i]) == JSON.stringify(item)) {
+            //console.log("found");
+            return item, i;
+        }
     }
+    return null;
 }
 
 function setStyle([property, type, value]) {
@@ -77,21 +99,40 @@ function setStyle([property, type, value]) {
     root.style.setProperty(property, value);
 }
 
-var headerReset = false;
+var headerOpen = false;
 function mouseMoveHandler(event) {
     let distance = window.screen.width / 10;
     var x = event.pageX;
-    if(x <= distance && !headerReset) {
-        headerReset = true;
-        //let offset = sideHeaderOffset[2] + -x;
-        //setStyle([sideHeaderOffset[0], sideHeaderOffset[1], offset]);
-        animate(sideHeaderOffset[0],-headerSize[2],0,5,"vw");
+    
+    if(x <= distance && !headerOpen) {
+        
+        if(checkAnimCache(headerOpenAnim) == null) {
+            headerOpen = true;
+            animate(headerOpenAnim);
+        }
     }
-    else if (x > distance && headerReset) {
-        //setStyle(sideHeaderOffset);
-        animate(sideHeaderOffset[0],0,-headerSize[2],5,"vw");
-        headerReset = false;
+    else if(x > distance && headerOpen) {
+        
+        if(checkAnimCache(headerCloseAnim) == null) {
+            headerOpen = false;
+            animate(headerCloseAnim);
+        }
     }
+}
+
+function screenLostFocus() {
+    if(headerOpen) { //close header when mouse leaves page
+        headerOpen = false;
+        animate(headerCloseAnim);
+    }
+}
+
+function gamesBtn() {
+    console.log("click");
+}
+
+function gamesBtnHover() {
+    console.log("hover");
 }
 
 init();
