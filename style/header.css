@@ -5,8 +5,8 @@
   --logo-color: rgb(224, 102, 61);
   --title-color: rgb(222, 80, 33);
 
-  --header-size: 10vw;
-  --side-header-offset: 0;
+  --header-size: 80px;
+  --side-header-offset: calc(var(--header-size) * -1);
 }
 
 .placeholder-top {
@@ -42,6 +42,8 @@
   width: var(--header-size);
   height: 100%;
   background-color: var(--side-header-color);
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
 }
 
 .side-header-text {
@@ -126,4 +128,14 @@
   .headerSide {
     display: none;
   }
+}
+
+@keyframes openSideHeader {
+  from {left: calc(var(--header-size) * -1); }
+  to {left: 0;}
+}
+
+@keyframes closeSideHeader {
+  from {left: 0;}
+  to {left: calc(var(--header-size) * -1);}
 }

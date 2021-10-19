@@ -8,53 +8,54 @@ document.body.innerHTML += ajax.responseText;
 
 // CSS VARIABLES
 let menuBoxColor = ["--menu-box-color","rgba",[46, 134, 175, 0.5]];
-let headerSize = ["--header-size","vw",10];
-let sideHeaderOffset = ["--side-header-offset","px",0];
+let headerSize = ["--header-size","px",80];
+//let sideHeaderOffset = ["--side-header-offset","px",0];
 
 
 
 // ANIMAITONS
-var headerOpenAnim = [sideHeaderOffset[0],-headerSize[2],0,1,"vw"];
-var headerCloseAnim = [sideHeaderOffset[0],0,-headerSize[2],1,"vw"];
+var headerOpenAnim = [sideHeaderOffset[0],-headerSize[2],0,0.2,"px"];
+var headerCloseAnim = [sideHeaderOffset[0],0,-headerSize[2],0.2,"px"];
 
 
 
 // DOM
-let root = document.documentElement;
-document.onmousemove = mouseMoveHandler;
-document.getElementById("html").onmouseleave = screenLostFocus;
-document.getElementById("html").onmouseenter = screenRefocus;
+let rootDOM = document.documentElement;
+let htmlDOM = document.getElementById("html");
+let sideHeaderDOM = document.getElementById("side-header");
 
+htmlDOM.onmousemove = mouseMoveHandler;
+htmlDOM.onmouseleave = screenLostFocus;
+htmlDOM.onmouseenter = screenRefocus;
+document.getElementById("body").onresize = screenResize;
+
+
+// GLOBAL DECLARES
+var headerOpen = false;
+var animationActive = false;
+var animationCache = [];
 
 
 
 function init() {
     setStyle(menuBoxColor);
-    //setStyle(headerSize);
-    setStyle([sideHeaderOffset[0],headerSize[1],-headerSize[2]]);
-
+    updateHeaderSize();
     console.log("Header loaded.")
 }
 
 
-// ANIMAITON
-var animationActive = false;
-var animationCache = [];
+/*
 function animate([property, start, end, delay, type]) {
-    //console.log(property, start, end, delay, type);
-
     animationCache.push([property, start, end, delay, type]);
-    //console.log("cached", [property, start, end, delay, type]);
 
     if(!animationActive) {
         animationActive = true;
-        delay = delay*1000;
+        var stage = start;
 
         var diff;
         if(start > end) {diff = start-end}
         else {diff = end-start}
 
-        var stage = start;
         for(i=0; i < diff; i++) {
             setTimeout(function() {
                 if(start < end) { stage++; }
@@ -68,24 +69,21 @@ function animate([property, start, end, delay, type]) {
                         animate(animationCache.pop());
                     }
                 }
-            },(delay/100)*i);
+            },((delay*1000)/100)*i);
         }
     }
 }
 
 function checkAnimCache(item) {
-    //console.log("check",item);
     for(i=0; i < animationCache.length; i++) {
-        if(JSON.stringify(animationCache[i]) == JSON.stringify(item)) {
-            //console.log("found");
-            return item, i;
-        }
-    }
-    return null;
+        if(JSON.stringify(animationCache[i]) == JSON.stringify(item)) { return item, i; }
+    } return null;
 }
+*/
+
+
 
 function setStyle([property, type, value]) {
-    //console.log(property, type, value);
     if(type == "rgb" || type == "rgba") {
         let _color = ""
         for(let i = 0; i < value.length; i++) {
@@ -100,26 +98,23 @@ function setStyle([property, type, value]) {
     root.style.setProperty(property, value);
 }
 
-var headerOpen = false;
 function mouseMoveHandler(event) {
-    let distance = window.screen.width / 10;
+    let distance = headerSize[2]*2;
     var x = event.pageX;
     
-    if(x <= distance && !headerOpen) {
-        
-        if(checkAnimCache(headerOpenAnim) == null) {
-            headerOpen = true;
-            animate(headerOpenAnim);
-        }
+    if(x <= distance && !headerOpen && checkAnimCache(headerOpenAnim) == null) {
+        headerOpen = true;
+        //animate(headerOpenAnim);
+        sideHeaderDOM.style.animationName="openSideHeader";
     }
-    else if(x > distance && headerOpen) {
-        
-        if(checkAnimCache(headerCloseAnim) == null) {
-            headerOpen = false;
-            animate(headerCloseAnim);
-        }
+    else if(x > distance && headerOpen && checkAnimCache(headerCloseAnim) == null) {
+        headerOpen = false;
+        //animate(headerCloseAnim);
+        sideHeaderDOM.style.animationName="closeSideHeader";
     }
 }
+
+
 
 var screenFocusState;
 function screenLostFocus() {
@@ -129,22 +124,75 @@ function screenLostFocus() {
         setTimeout(function(){
             if(!screenFocusState) {
                 headerOpen = false;
-        animate(headerCloseAnim);
+        //animate(headerCloseAnim);
+        sideHeaderDOM.style.animationName="closeSideHeader";
             }
         }, 1000);
     }
 }
 
+
+
+function updateHeaderSize() {
+    let width = screen.availWidth;
+    let adjust = [
+        [500,110],
+        [1000,100],
+        [1500,80]
+    ];
+
+    let pos;
+    let distance;
+    let checkDist;
+    for(i=0; i < adjust.length; i++) {
+        
+        if(width > adjust[i][0]) {
+            checkDist = width-adjust[i][0];
+        }
+        else if (width < adjust[i][0]) {
+            checkDist = adjust[i][0]-width;
+        }
+        else if (width == adjust[i][0]) {
+            pos = i;
+            break
+        }
+        if(distance == null || checkDist < distance) { 
+            distance = checkDist; 
+            pos = i;
+        };
+    }
+    console.log("SHORTEST", adjust[pos]);
+    
+    headerSize[2] = adjust[pos][1];
+    setStyle(headerSize);
+}
+
+
+
+
 function screenRefocus() {
     screenFocusState = true;
 }
+
+
+
+function screenResize() {
+    updateHeaderSize();
+}
+
+
 
 function gamesBtn() {
     console.log("click");
 }
 
+
+
 function gamesBtnHover() {
     console.log("hover");
 }
 
+
+
 init();
+// EOF
