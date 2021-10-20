@@ -1,12 +1,17 @@
 :root {
-  --menu-box-color: gray;
+  --menu-box-bgcolor: rgb(46, 134, 175);
+  --menu-box-highlight-bgcolor: rgb(65, 159, 202);
+  --menu-box-color: var(--top-header-color);
+
   --top-header-color: rgb(36, 36, 36);
   --side-header-color: rgb(25, 25, 25);
+  
   --logo-color: rgb(224, 102, 61);
   --title-color: rgb(222, 80, 33);
 
   --header-size: 80px;
   --side-header-offset: calc(var(--header-size) * -1);
+  --box-size: calc(var(--header-size) - var(--header-size) / 5);
 }
 
 .placeholder-top {
@@ -46,6 +51,11 @@
   animation-fill-mode: forwards;
 }
 
+.side-header.mobile {
+  left: auto !important;
+  right: var(--side-header-offset);
+}
+
 .side-header-text {
   left: calc(var(--header-size)/2);
   top: calc(50vh - var(--header-size));
@@ -57,36 +67,91 @@
 }
 
 .box {
-  background-color: var(--menu-box-color);
+  background-color: gray;
   margin: auto;
-  width: calc(var(--header-size) - var(--header-size) / 5);
-  height: calc(var(--header-size) - var(--header-size) / 5);
+  width: var(--box-size);
+  height: var(--box-size);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 .box.logo {
   background-color: var(--logo-color) !important;
   margin-left: calc(var(--header-size) / 10) !important;
   margin-right: calc(var(--header-size) / 10) !important;
   display: block !important;
-  width: calc(var(--header-size) - var(--header-size) / 5) !important;
-  height: calc(var(--header-size) - var(--header-size) / 5) !important;
+  width: var(--box-size) !important;
+  height: var(--box-size) !important;
 }
-.box.menu {
+
+.box.side {
   margin-top: calc(var(--header-size) / 10) !important;
 }
+
+.box.menu {
+  animation-fill-mode: forwards;
+  background-color: var(--menu-box-bgcolor);
+  margin-right: calc(var(--header-size) / 10) !important;
+}
+
 .box-image {
   width: inherit;
   margin-top: 1px;
 }
+
 .box-text {
   display: none;
   margin: 0;
   font-size: 2vw;
   color: inherit;
   text-align: center;
+}
+
+#menu-btn-wrap-closed {
+  height: 85%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  animation-duration: none;
+  animation-fill-mode: forwards;
+}
+
+#menu-btn-wrap-open {
+  height: 85%;
+  width: var(--box-size);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  animation-duration: none;
+  animation-fill-mode: forwards;
+}
+
+.menu-btn-closed {
+  width: 80%;
+  border: 5px solid var(--menu-box-color);
+  border-radius: 5px;
+  align-self: center;
+  margin: auto;
+}
+
+.menu-btn-open {
+  width: var(--box-size);
+  border: 5px solid var(--menu-box-color);
+  border-radius: 5px;
+  /*transform: rotate(0.125turn);*/
+  top: 45%;
+  position: absolute;
+}
+
+.menu-btn-open.one {
+  transform: rotate(0.125turn);
+}
+
+.menu-btn-open.two {
+  transform: rotate(0.875turn);
 }
 
 .title {
@@ -134,8 +199,59 @@
   from {left: calc(var(--header-size) * -1); }
   to {left: 0;}
 }
-
 @keyframes closeSideHeader {
   from {left: 0;}
   to {left: calc(var(--header-size) * -1);}
+}
+
+
+@keyframes openSideHeaderMobile {
+  from {right: calc(var(--header-size) * -1); }
+  to {right: 0;}
+}
+@keyframes closeSideHeaderMobile {
+  from {right: 0;}
+  to {right: calc(var(--header-size) * -1);}
+}
+
+
+@keyframes openMobileMenuOne {
+  from { height: 85%; width: 100%; transform: rotate(0turn); }
+  to { height: 35%; width: 10%; transform: rotate(0.625turn); }
+}
+@keyframes closeMobileMenuOne {
+  from { height: 35%; width: 10%; transform: rotate(0.625turn); }
+  to { height: 85%; width: 100%; transform: rotate(0turn); }
+}
+
+
+@keyframes openMobileMenuTwo {
+  from { width: 0; }
+  to { transform: rotate(1.125turn);
+  width: var(--box-size); }
+}
+@keyframes closeMobileMenuTwo {
+  from { transform: rotate(1.125turn); }
+  to { width: 0; transform: rotate(0.125turn); }
+}
+
+
+@keyframes openMobileMenuThree {
+  from { width: 0; }
+  to { transform: rotate(1.875turn); 
+  width: var(--box-size); }
+}
+@keyframes closeMobileMenuThree {
+  from { transform: rotate(1.875turn); }
+  to { width: 0; transform: rotate(0.875turn); }
+}
+
+
+@keyframes openMenuBox {
+  from { background-color: var(--menu-box-bgcolor); }
+  to { background-color: var(--menu-box-highlight-bgcolor); }
+}
+@keyframes closeMenuBox {
+  from { background-color: var(--menu-box-highlight-bgcolor); }
+  to { background-color: var(--menu-box-bgcolor); }
 }

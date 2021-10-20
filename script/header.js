@@ -6,17 +6,16 @@ document.body.innerHTML += ajax.responseText;
 
 
 
-// CSS VARIABLES
-let menuBoxColor = ["--menu-box-color","rgba",[46, 134, 175, 0.5]];
-let headerSize = ["--header-size","px",80];
-//let sideHeaderOffset = ["--side-header-offset","px",0];
-
-
-
 // DOM
 let rootDOM = document.documentElement;
 let htmlDOM = document.getElementById("html");
 let sideHeaderDOM = document.getElementById("side-header");
+
+let menuBtnDOM = document.getElementById("menu-btn");
+let menuBtnWrapClosedDOM = document.getElementById("menu-btn-wrap-closed");
+let menuBtnWrapOpenDOM = document.getElementById("menu-btn-wrap-open");
+let menuBtnOpenDOM = document.getElementsByClassName("menu-btn-open");
+let menuBtnClosedDOM = document.getElementsByClassName("menu-btn-closed");
 
 htmlDOM.onmousemove = mouseMoveHandler;
 htmlDOM.onmouseleave = screenLostFocus;
@@ -25,23 +24,48 @@ document.getElementById("body").onresize = screenResize;
 
 
 // GLOBAL DECLARES
-var headerOpen = false;
-var animationActive = false;
-var animationCache = [];
+let headerOpen = false;
+let headerSize;
+let screenAdjust = [
+    [350,140],
+    [400,130],
+    [450,120],
+    [500,110],
+    [1000,100],
+    [1500,80],
+];
 
 
 
 function init() {
-    setStyle(menuBoxColor);
+    if(isTouchDevice()) {
+        sideHeaderDOM.classList.add("mobile");
+        menuBtnDOM.style.visibility = "visible";
+        menuBtnWrapOpenDOM.style.display = "none";
+    }
+    else {
+        menuBtnDOM.style.visibility = "hidden";
+    }
+
     updateHeaderSize();
     console.log("Header loaded.")
 }
 
 
 
+function isTouchDevice() {
+    if(window.matchMedia("(pointer: coarse)").matches) {
+        return true;
+    }
+    return false;
+}
 
-// DEPRECATED
-/*
+
+
+/* DEPRECATED
+var animationActive = false;
+var animationCache = [];
+
 var headerOpenAnim = [sideHeaderOffset[0],-headerSize[2],0,0.2,"px"];
 var headerCloseAnim = [sideHeaderOffset[0],0,-headerSize[2],0.2,"px"];
 
@@ -83,7 +107,7 @@ function checkAnimCache(item) {
 
 
 
-function setStyle([property, type, value]) {
+function setStyle(property, type, value) {
     if(type == "rgb" || type == "rgba") {
         let _color = ""
         for(let i = 0; i < value.length; i++) {
@@ -101,16 +125,17 @@ function setStyle([property, type, value]) {
 
 
 function mouseMoveHandler(event) {
-    let distance = headerSize[2]*2;
-    var x = event.pageX;
-    
-    if(x <= distance && !headerOpen) {
-        headerOpen = true;
-        sideHeaderDOM.style.animationName="openSideHeader";
-    }
-    else if(x > distance && headerOpen) {
-        headerOpen = false;
-        sideHeaderDOM.style.animationName="closeSideHeader";
+    if (!isTouchDevice()) {
+        let distance = headerSize*2;
+        var x = event.pageX;
+        if(x <= distance && !headerOpen) {
+            headerOpen = true;
+            sideHeaderDOM.style.animationName="openSideHeader";
+        }
+        else if(x > distance && headerOpen) {
+            headerOpen = false;
+            sideHeaderDOM.style.animationName="closeSideHeader";
+        }
     }
 }
 
@@ -120,7 +145,7 @@ var screenFocusState;
 function screenLostFocus() {
     screenFocusState = false;
 
-    if(headerOpen) {
+    if(!isTouchDevice() && headerOpen) {
         setTimeout(function(){
             if(!screenFocusState) {
                 headerOpen = false;
@@ -134,24 +159,18 @@ function screenLostFocus() {
 
 function updateHeaderSize() {
     let width = screen.availWidth;
-    let adjust = [
-        [500,110],
-        [1000,100],
-        [1500,80]
-    ];
-
     let pos;
     let distance;
     let checkDist;
-    for(i=0; i < adjust.length; i++) {
+    for(i=0; i < screenAdjust.length; i++) {
         
-        if(width > adjust[i][0]) {
-            checkDist = width-adjust[i][0];
-        }
-        else if (width < adjust[i][0]) {
-            checkDist = adjust[i][0]-width;
-        }
-        else if (width == adjust[i][0]) {
+        if(width > screenAdjust[i][0]) {
+            checkDist = width-screenAdjust[i][0];
+        } 
+        else if (width < screenAdjust[i][0]) {
+            checkDist = screenAdjust[i][0]-width;
+        } 
+        else if (width == screenAdjust[i][0]) {
             pos = i;
             break
         }
@@ -160,9 +179,8 @@ function updateHeaderSize() {
             pos = i;
         };
     }
-    
-    headerSize[2] = adjust[pos][1];
-    setStyle(headerSize);
+    headerSize = screenAdjust[pos][1]
+    setStyle("--header-size","px", headerSize);
 }
 
 
@@ -182,6 +200,42 @@ function screenResize() {
 
 function gamesBtn() {
     console.log("click");
+}
+
+
+
+function menuBtn() {
+    let delay = 500;
+    if(!headerOpen) {
+        menuBtnWrapClosedDOM.style.animationDuration=String(delay)+"ms";
+        menuBtnWrapClosedDOM.style.animationName = "openMobileMenuOne";
+        setTimeout(function() {
+            menuBtnWrapClosedDOM.style.display = "none";
+            menuBtnWrapOpenDOM.style.display = "flex";
+            for(i=0; i < menuBtnOpenDOM.length; i++) {
+                menuBtnOpenDOM[i].style.animationDuration = String(delay)+"ms";
+                menuBtnOpenDOM[i].style.animationPlayState = "forward";
+            }
+            menuBtnOpenDOM[0].style.animationName = "openMobileMenuTwo";
+            menuBtnOpenDOM[1].style.animationName = "openMobileMenuThree";
+            sideHeaderDOM.style.animationName = "openSideHeaderMobile";
+            menuBtnDOM.style.animationDuration = String(delay)+"ms";
+            menuBtnDOM.style.animationName = "openMenuBox";
+        },delay/2);
+        headerOpen = true;
+    }
+    else {
+        menuBtnDOM.style.animationName = "closeMenuBox";
+        sideHeaderDOM.style.animationName = "closeSideHeaderMobile";
+        menuBtnOpenDOM[0].style.animationName = "closeMobileMenuTwo";
+        menuBtnOpenDOM[1].style.animationName = "closeMobileMenuThree";
+        setTimeout(function() {
+           menuBtnWrapOpenDOM.style.display = "none";
+           menuBtnWrapClosedDOM.style.display = "flex";
+           menuBtnWrapClosedDOM.style.animationName = "closeMobileMenuOne";
+        },delay/2);
+        headerOpen = false;
+    }
 }
 
 

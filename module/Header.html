@@ -8,13 +8,24 @@
     <div class="top-header">
         <div class="top-header-wrap outer">
             <div class="top-header-wrap inner">
-                <div class="box logo">
+                <div class="box header logo">
                     <img src="/resource/header/logo.png" class="box-image" />
                 </div>
                 <p class="title">TheCornishGinger</p>
                 <div class="smallTitle">
                     <p class="smallTitleText">The Cornish</p>
                     <p class="smallTitleText">Ginger</p>
+                </div>
+                <div class="box header menu" id="menu-btn" onclick="menuBtn()">
+                    <div id="menu-btn-wrap-closed">
+                        <div class="menu-btn-closed"></div>
+                        <div class="menu-btn-closed"></div>
+                        <div class="menu-btn-closed"></div>
+                    </div>
+                    <div id="menu-btn-wrap-open">
+                        <div class="menu-btn-open one"></div>
+                        <div class="menu-btn-open two"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -23,15 +34,15 @@
     <div class="side-header" id="side-header">
         <div class="side-header-wrap outer">
             <div class="side-header-wrap inner">
-                <div class="box menu" onmouseover="gamesBtnHover()" onclick="gamesBtn()">
+                <div class="box side games" onmouseover="gamesBtnHover()" onclick="gamesBtn()">
                     <img src="/resource/header/menu_games.png" class="box-image" />
                     <p class="box-text">Games</p>
                 </div>
-                <div class="box menu">
+                <div class="box side projects">
                     <img src="/resource/header/menu_games.png" class="box-image" />
                     <p class="box-text">Projects</p>
                 </div>
-                <div class="box menu">
+                <div class="box side">
                     <img src="/resource/header/menu_games.png" class="box-image" />
                     <p class="box-text">Contact</p>
                 </div>
