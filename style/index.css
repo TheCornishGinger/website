@@ -1,0 +1,8 @@
+.image {
+  margin-top: 35px !important;
+  margin-bottom: 60px !important;
+  width: 80%;
+  max-width: 400px;
+  display: flex;
+  margin: auto;
+}

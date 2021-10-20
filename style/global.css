@@ -6,17 +6,21 @@ body {
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-.page {
+.page-wrap-outer {
   display: flex;
   flex-direction: column;
   background-color: rgb(16, 16, 16);
-  min-height: 100vh;
+  min-height: calc(100vh - var(--header-size));
   align-items: center;
   margin: auto;
 }
 
+.page-wrap-inner {
+  margin: auto;
+}
+
 * {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
 .flex {
