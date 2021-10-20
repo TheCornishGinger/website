@@ -26,6 +26,7 @@ document.getElementById("body").onresize = screenResize;
 // GLOBAL DECLARES
 let headerOpen = false;
 let headerSize;
+let menuBtnAnimDelay;
 let screenAdjust = [
     [350,140],
     [400,130],
@@ -40,8 +41,7 @@ let screenAdjust = [
 function init() {
     if(isTouchDevice()) {
         sideHeaderDOM.classList.add("mobile");
-        menuBtnDOM.style.visibility = "visible";
-        menuBtnWrapOpenDOM.style.display = "none";
+        menuBtnInit(500);
     }
     else {
         menuBtnDOM.style.visibility = "hidden";
@@ -203,37 +203,51 @@ function gamesBtn() {
 }
 
 
+function menuBtnInit(delay) {
+    menuBtnDOM.style.visibility = "visible";
+    menuBtnWrapOpenDOM.style.display = "none";
+
+    menuBtnAnimDelay = delay;
+    menuBtnWrapClosedDOM.style.animationDuration=String(delay)+"ms";
+    for(i=0; i < menuBtnClosedDOM.length; i++) {
+        menuBtnClosedDOM[i].style.animationDuration = String(delay)+"ms";
+    }
+    for(i=0; i < menuBtnOpenDOM.length; i++) {
+        menuBtnOpenDOM[i].style.animationDuration = String(delay)+"ms";
+    }
+    menuBtnDOM.style.animationDuration = String(delay*3)+"ms";
+}
+
 
 function menuBtn() {
-    let delay = 500;
     if(!headerOpen) {
-        menuBtnWrapClosedDOM.style.animationDuration=String(delay)+"ms";
+        menuBtnDOM.style.animationName = "openMenuBtnColor";
         menuBtnWrapClosedDOM.style.animationName = "openMobileMenuOne";
+        menuBtnClosedDOM[0].style.animationName = "openMenuBorderColor";
+        menuBtnClosedDOM[1].style.animationName = "openMenuBorderColor";
+        menuBtnClosedDOM[2].style.animationName = "openMenuBorderColor";
         setTimeout(function() {
             menuBtnWrapClosedDOM.style.display = "none";
             menuBtnWrapOpenDOM.style.display = "flex";
-            for(i=0; i < menuBtnOpenDOM.length; i++) {
-                menuBtnOpenDOM[i].style.animationDuration = String(delay)+"ms";
-                menuBtnOpenDOM[i].style.animationPlayState = "forward";
-            }
             menuBtnOpenDOM[0].style.animationName = "openMobileMenuTwo";
             menuBtnOpenDOM[1].style.animationName = "openMobileMenuThree";
             sideHeaderDOM.style.animationName = "openSideHeaderMobile";
-            menuBtnDOM.style.animationDuration = String(delay)+"ms";
-            menuBtnDOM.style.animationName = "openMenuBox";
-        },delay/2);
+        },menuBtnAnimDelay/2);
         headerOpen = true;
     }
     else {
-        menuBtnDOM.style.animationName = "closeMenuBox";
+        menuBtnDOM.style.animationName = "closeMenuBtnColor";
         sideHeaderDOM.style.animationName = "closeSideHeaderMobile";
         menuBtnOpenDOM[0].style.animationName = "closeMobileMenuTwo";
         menuBtnOpenDOM[1].style.animationName = "closeMobileMenuThree";
         setTimeout(function() {
-           menuBtnWrapOpenDOM.style.display = "none";
-           menuBtnWrapClosedDOM.style.display = "flex";
-           menuBtnWrapClosedDOM.style.animationName = "closeMobileMenuOne";
-        },delay/2);
+            menuBtnClosedDOM[0].style.animationName = "closeMenuBorderColor";
+            menuBtnClosedDOM[1].style.animationName = "closeMenuBorderColor";
+            menuBtnClosedDOM[2].style.animationName = "closeMenuBorderColor";
+            menuBtnWrapOpenDOM.style.display = "none";
+            menuBtnWrapClosedDOM.style.display = "flex";
+            menuBtnWrapClosedDOM.style.animationName = "closeMobileMenuOne";
+        },menuBtnAnimDelay/2);
         headerOpen = false;
     }
 }

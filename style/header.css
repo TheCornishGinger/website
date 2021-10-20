@@ -1,7 +1,10 @@
 :root {
-  --menu-box-bgcolor: rgb(46, 134, 175);
-  --menu-box-highlight-bgcolor: rgb(65, 159, 202);
+  --menu-box-bgcolor: rgb(101, 146, 167);
+  --menu-box-highlight-bgcolor: rgb(128, 185, 211);
   --menu-box-color: var(--top-header-color);
+
+  --menu-btn-width: 65%;
+  --menu-btn-height: 65%;
 
   --top-header-color: rgb(36, 36, 36);
   --side-header-color: rgb(25, 25, 25);
@@ -110,40 +113,41 @@
 }
 
 #menu-btn-wrap-closed {
-  height: 85%;
-  width: 100%;
+  height: var(--menu-btn-height);
+  width: var(--menu-btn-width);
   display: flex;
   flex-direction: column;
   align-self: center;
-  animation-duration: none;
   animation-fill-mode: forwards;
 }
 
 #menu-btn-wrap-open {
-  height: 85%;
+  height: var(--menu-btn-height);
   width: var(--box-size);
   display: flex;
   align-items: center;
   flex-direction: column;
-  animation-duration: none;
   animation-fill-mode: forwards;
 }
 
 .menu-btn-closed {
   width: 80%;
-  border: 5px solid var(--menu-box-color);
-  border-radius: 5px;
+  border: 4px solid var(--menu-box-color);
+  border-radius: 3px;
   align-self: center;
   margin: auto;
+  background-color: var(--top-header-color);
+  animation-fill-mode: forwards;
 }
 
 .menu-btn-open {
   width: var(--box-size);
-  border: 5px solid var(--menu-box-color);
-  border-radius: 5px;
-  /*transform: rotate(0.125turn);*/
+  border: 4px solid var(--menu-box-color);
+  border-radius: 3px;
   top: 45%;
   position: absolute;
+  background-color: var(--top-header-color);
+  animation-fill-mode: forwards;
 }
 
 .menu-btn-open.one {
@@ -175,6 +179,7 @@
   padding-right: 16px;
 }
 
+/*
 @media only screen and (max-width: 500px) {
   .smallTitle {
     display: block;
@@ -194,6 +199,7 @@
     display: none;
   }
 }
+*/
 
 @keyframes openSideHeader {
   from {left: calc(var(--header-size) * -1); }
@@ -216,42 +222,52 @@
 
 
 @keyframes openMobileMenuOne {
-  from { height: 85%; width: 100%; transform: rotate(0turn); }
+  from { transform: rotate(0turn); }
   to { height: 35%; width: 10%; transform: rotate(0.625turn); }
 }
 @keyframes closeMobileMenuOne {
-  from { height: 35%; width: 10%; transform: rotate(0.625turn); }
-  to { height: 85%; width: 100%; transform: rotate(0turn); }
+  from { transform: rotate(0.625turn); height: 35%; width: 10% }
+  to { height: var(--menu-btn-height); width: var(--menu-btn-width); transform: rotate(0turn); }
 }
 
 
 @keyframes openMobileMenuTwo {
-  from { width: 0; }
-  to { transform: rotate(1.125turn);
-  width: var(--box-size); }
+  from { border-color: var(--menu-box-bgcolor); background-color: var(--menu-box-bgcolor);
+    width: 0; transform: rotate(0.125turn);}
+  to { border-color: var(--menu-box-color); background-color: var(--menu-box-color);
+    transform: rotate(1.125turn); width: calc(var(--box-size)/1.75); }
 }
 @keyframes closeMobileMenuTwo {
-  from { transform: rotate(1.125turn); }
+  from { width: calc(var(--box-size)/1.75); transform: rotate(1.125turn); }
   to { width: 0; transform: rotate(0.125turn); }
 }
 
 
 @keyframes openMobileMenuThree {
-  from { width: 0; }
-  to { transform: rotate(1.875turn); 
-  width: var(--box-size); }
+  from { transform: rotate(0.875turn); width: 0; }
+  to { transform: rotate(1.875turn); width: calc(var(--box-size)/1.75) }
 }
 @keyframes closeMobileMenuThree {
-  from { transform: rotate(1.875turn); }
+  from { width: calc(var(--box-size)/1.75); transform: rotate(1.875turn); }
   to { width: 0; transform: rotate(0.875turn); }
 }
 
 
-@keyframes openMenuBox {
+@keyframes openMenuBtnColor {
   from { background-color: var(--menu-box-bgcolor); }
   to { background-color: var(--menu-box-highlight-bgcolor); }
 }
-@keyframes closeMenuBox {
+@keyframes closeMenuBtnColor {
   from { background-color: var(--menu-box-highlight-bgcolor); }
   to { background-color: var(--menu-box-bgcolor); }
+}
+
+
+@keyframes openMenuBorderColor {
+  from { border-color: var(--menu-box-color); background-color: var(--menu-box-color); }
+  to { border-color: var(--menu-box-bgcolor); background-color: var(--menu-box-bgcolor); }
+}
+@keyframes closeMenuBorderColor {
+  from { border-color: var(--menu-box-bgcolor); background-color: var(--menu-box-bgcolor); }
+  to { border-color: var(--menu-box-color); background-color: var(--menu-box-color); }
 }

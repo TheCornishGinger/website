@@ -17,11 +17,14 @@ body {
 
 .page-wrap-inner {
   margin: auto;
+  max-width: 50%;
 }
 
+/*
 * {
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
 }
+*/
 
 .flex {
   display: flex;
@@ -30,36 +33,26 @@ body {
 .text {
   font-weight: normal;
   color: rgb(110,110,110);
-  max-width: 500px;
   text-align: center;
 }
 
 .text.small {
-  font-size: 24px;
+  font-size: calc(var(--header-size) * 0.2);;
   margin: 10px;
 }
 
 .text.medium {
-  font-size: 32px;
+  font-size: calc(var(--header-size) * 0.45);;
   margin: 8px;
 }
 
 .text.large {
-  font-size: 116px;
+  font-size: calc(var(--header-size) * 1.4);
   margin: 0;
 }
 
 .text.top-0 {
   margin-top: 0;
-}
-
-@media only screen and (max-width: 700px) {
-  .text.large {
-    font-size: 80px;
-  }
-  .text.medium {
-    font-size: 28px;
-  }
 }
 
 @font-face {
