@@ -57,9 +57,9 @@
 }
 
 .side-header-text {
-  left: calc(var(--header-size)/2);
+  left: calc(var(--header-size)/3);
   top: calc(50vh - var(--header-size));
-  font-size: calc(var(--header-size)/4);
+  font-size: calc(var(--header-size)/3);
   color: gray;
   transform: rotate(90deg);
   width: max-content;
