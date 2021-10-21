@@ -206,15 +206,17 @@ var buttonPress = function(id) {
 
 
 //INIT
-if(isTouchDevice()) {
-    sideHeaderDOM.classList.add("mobile");
-    menuBtnInit(500);
+window.onload = function() {
+    if(isTouchDevice()) {
+        sideHeaderDOM.classList.add("mobile");
+        menuBtnInit(500);
+    }
+    else {
+        menuBtnDOM.style.visibility = "hidden";
+    }
+    updateHeaderSize();
+    addInit("header");
 }
-else {
-    menuBtnDOM.style.visibility = "hidden";
-}
-updateHeaderSize();
-addInit("header");
 
 
 
