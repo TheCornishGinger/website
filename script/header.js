@@ -4,10 +4,10 @@ ajax.open("GET", "/module/header.html", false);
 ajax.send();
 ajax.onload = function() {
     if(ajax.readyState == 4 && ajax.status == 200) {
-        console.log(ajax.responseText);
+        console.log("ajax",ajax.responseText);
     }
     else {
-        console.error(ajax.statusText);
+        console.error("ajaxError",ajax.statusText);
     }
 }
 document.getElementById("content").innerHTML = ajax.responseText + document.getElementById("content").innerHTML;

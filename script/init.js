@@ -34,10 +34,7 @@ function addInit(item) {
         if(isTouchDevice() || screen.width < 1000) { document.getElementsByClassName("page-wrap-inner")[0].style.maxWidth = "95%"; }
         document.getElementById("loader").style.display = "none";
         document.getElementById("content").style.display = "block";
-        setTimeout(function() {
-            document.getElementById("content").style.visibility = "visible";
-            pageInitVar = true;
-        },50);
+        pageInitVar = true;
     }
 }
 
