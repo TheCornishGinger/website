@@ -10,6 +10,7 @@ body {
   background-color: var(--page-bg-color);
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
   font-family: 'monospace',-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -20,9 +21,12 @@ body {
   text-align: center;
   font-size: calc(var(--loader-size)*0.75);
   color: var(--page-text-color);
-  display: flex;
   flex-direction: column;
+  position: absolute;
+  display: flex;
+  z-index: 2;
 }
+
 #loader-image {
   height: var(--loader-size);
   image-rendering: pixelated;
@@ -30,13 +34,22 @@ body {
   animation-duration: 2s;
   animation-iteration-count: infinite;
 }
+
 @keyframes loaderAnimation {
   from { transform: rotate(0turn); }
   to { transform: rotate(4turn); }
 }
 
-#content {
-  display: none;
+@keyframes blurFadeIn {
+  from { filter: blur(10px); }
+  to { filter: none; }
+}
+
+#init-blur {
+  animation-duration: 500ms;
+  filter: blur(10px);
+  animation-fill-mode: forwards;
+  overflow-y: hidden;
 }
 
 .page-wrap {

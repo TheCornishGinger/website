@@ -32,7 +32,11 @@ function addInit(item) {
     if(result) {
         console.log("Init complete");
         document.getElementById("loader").style.display = "none";
-        document.getElementById("content").style.display = "block";
+        document.getElementById("init-blur").style.animationName = "blurFadeIn";
+        setTimeout(function() {
+            document.getElementById("init-blur").style.removeProperty("filter");
+            document.getElementById("init-blur").style.removeProperty("overflow-y");
+        },500);
         pageInitVar = true;
     }
 }
@@ -80,7 +84,7 @@ window.onload = function() {
     if(isTouchDevice() || screen.width < 1000) {
         console.log("small");
         document.documentElement.style.setProperty("--max-width","95%");
-        document.documentElement.style.setProperty("--header-size","30vw"); 
+        document.documentElement.style.setProperty("--header-size","50%"); 
     }
     let tags = getTags(["title","stylesheet"]);
 

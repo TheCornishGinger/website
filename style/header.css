@@ -12,9 +12,9 @@
   --logo-color: rgb(224, 102, 61);
   --title-color: rgb(222, 80, 33);
 
-  --header-size: 80px;
   --side-header-offset: calc(var(--header-size) * -1);
   --box-size: calc(var(--header-size) - var(--header-size) / 5);
+  --header-size: 80px;
 }
 
 .placeholder-top {
