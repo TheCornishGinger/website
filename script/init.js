@@ -1,5 +1,9 @@
 // GLOBAL PAGE INIT
 let pageInitVar;
+let initList = [
+    ["init",false],
+    ["header",false]
+];
 
 function isTouchDevice() {
     if(window.matchMedia("(pointer: coarse)").matches) {
@@ -12,6 +16,25 @@ function pageInit() {
     return pageInitVar;
 }
 
+function addInit(item) {
+    let result;
+    for(i=0; i < initList.length; i++) {
+        if(initList[i][0] == item) {
+            initList[i][1] = true;
+            result = true;
+        }
+        if(!initList[i][1]) {
+            result = false;
+            break;
+        }
+    }
+    console.log("addInit()",item);
+    if(result) {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("content").style.display = "block";
+        pageInitVar = true;
+    }
+}
 
 
 // LOCAL
@@ -64,8 +87,5 @@ window.onload = function() {
         document.getElementsByClassName("page-wrap-inner")[0].style.maxWidth = "95%";
     }
 
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("content").style.display = "block";
-    pageInitVar = true;
-    console.log("Page loaded.")
+    addInit("init");
 }

@@ -46,20 +46,6 @@ let menuButtons = [
 
 
 
-let init = function() {
-    if(isTouchDevice()) {
-        sideHeaderDOM.classList.add("mobile");
-        menuBtnInit(500);
-    }
-    else {
-        menuBtnDOM.style.visibility = "hidden";
-    }
-    updateHeaderSize();
-    console.log("Header loaded.");
-}
-
-
-
 let setStyle = function(property, type, value) {
     if(type == "rgb" || type == "rgba") {
         let _color = ""
@@ -215,7 +201,18 @@ var buttonPress = function(id) {
 
 
 
-init();
+//INIT
+if(isTouchDevice()) {
+    sideHeaderDOM.classList.add("mobile");
+    menuBtnInit(500);
+}
+else {
+    menuBtnDOM.style.visibility = "hidden";
+}
+updateHeaderSize();
+addInit("header");
+
+
 
 /* DEPRECATED
 var animationActive = false;
