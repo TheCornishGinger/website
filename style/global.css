@@ -50,16 +50,13 @@ body {
   margin: auto;
 }
 
-.vertical-center {
-  margin: auto;
+.max-width {
   max-width: 50%;
 }
 
-/*
-* {
-  box-sizing: border-box;
+.vertical-center {
+  margin: auto;
 }
-*/
 
 .no-margin {
   margin: 0 !important;

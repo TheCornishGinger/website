@@ -31,7 +31,7 @@ function addInit(item) {
     console.log("addInit()",item);
     if(result) {
         console.log("Init complete");
-        if(isTouchDevice() || screen.width < 1000) { document.getElementsByClassName("page-wrap-inner")[0].style.maxWidth = "95%"; }
+        if(isTouchDevice() || screen.width < 1000) { document.getElementsByClassName("max-width")[0].style.maxWidth = "95%"; }
         document.getElementById("loader").style.display = "none";
         document.getElementById("content").style.display = "block";
         pageInitVar = true;
