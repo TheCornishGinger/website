@@ -206,7 +206,7 @@ var buttonPress = function(id) {
 
 
 //INIT
-window.onload = function() {
+document.fonts.ready = function() {
     if(isTouchDevice()) {
         sideHeaderDOM.classList.add("mobile");
         menuBtnInit(500);
