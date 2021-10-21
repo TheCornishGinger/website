@@ -86,5 +86,5 @@ window.onload = function() {
     loadScripts(["header"]);
     loadStyles([tags[1]]);
 
-    //addInit("init");
+    addInit("init");
 }
