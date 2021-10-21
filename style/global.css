@@ -1,6 +1,8 @@
 :root {
   --page-bg-color: rgb(10, 15, 15);
   --page-text-color: rgb(100,115,115);
+  --max-width: 50%;
+  --loader-size: 4vw;
 }
 
 html,
@@ -16,18 +18,13 @@ body {
   width: 100vw;
   height: 100vh;
   text-align: center;
-  font-size: 3vw;
-  color: white;
+  font-size: calc(var(--loader-size)*0.75);
+  color: var(--page-text-color);
   display: flex;
   flex-direction: column;
 }
-#loader-image-wrap {
-  width: 10vw;
-  height: 10vw;
-  align-items: center;
-}
 #loader-image {
-  height: 4vw;
+  height: var(--loader-size);
   image-rendering: pixelated;
   animation-name: none;
   animation-duration: 2s;
@@ -51,7 +48,7 @@ body {
 }
 
 .max-width {
-  max-width: 50%;
+  max-width: var(--max-width);
 }
 
 .vertical-center {
