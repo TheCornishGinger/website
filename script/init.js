@@ -31,7 +31,6 @@ function addInit(item) {
     console.log("addInit()",item);
     if(result) {
         console.log("Init complete");
-        if(isTouchDevice() || screen.width < 1000) { document.DocumentElement.style.setProperty("--max-width","95%"); }
         document.getElementById("loader").style.display = "none";
         document.getElementById("content").style.display = "block";
         pageInitVar = true;
@@ -78,7 +77,11 @@ let setTitle = function(title) {
 
 // INIT
 window.onload = function() {
-    if(isTouchDevice()) { document.documentElement.style.setProperty("--header-size","30vw") }
+    if(isTouchDevice() || screen.width < 1000) {
+        console.log("small");
+        document.documentElement.style.setProperty("--max-width","95%");
+        document.documentElement.style.setProperty("--header-size","30vw"); 
+    }
     let tags = getTags(["title","stylesheet"]);
 
     setTitle(tags[0]);
