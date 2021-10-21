@@ -83,7 +83,7 @@ let setTitle = function(title) {
 window.onload = function() {
     if(isTouchDevice() || screen.width < 1000) {
         document.documentElement.style.setProperty("--max-width","95%");
-        document.documentElement.style.setProperty("--loader-size","10vw"); 
+        document.documentElement.style.setProperty("--loader-size","15vw"); 
     }
     let tags = getTags(["title","stylesheet"]);
 
