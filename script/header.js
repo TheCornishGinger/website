@@ -64,7 +64,7 @@ let setStyle = function(property, type, value) {
 
 
 htmlDOM.onmousemove = function(event) {
-    if (!isTouchDevice()) {
+    if (initDone() && !isTouchDevice()) {
         let distance = headerSize*2;
         var x = event.pageX;
         if(x <= distance && !headerOpen) {
@@ -82,7 +82,7 @@ htmlDOM.onmousemove = function(event) {
 
 var screenFocusState;
 htmlDOM.onmouseleave = function () {
-    if(pageInit) {
+    if(initDone()) {
         screenFocusState = false;
 
         if(!isTouchDevice() && headerOpen) {
@@ -128,13 +128,13 @@ let updateHeaderSize = function() {
 
 
 htmlDOM.onmouseenter = function() {
-    screenFocusState = true;
+    if(initDone()) { screenFocusState = true; }
 }
 
 
 
 document.body.onresize = function() {
-    updateHeaderSize();
+    if(initDone()) { updateHeaderSize(); }
 }
 
 
@@ -191,12 +191,16 @@ let menuBtn = function() {
 
 
 var buttonHover = function(id) {
-    console.log("hover",id);
+    if(initDone()) {
+        console.log("hover",id);
+    }
 }
 
 var buttonPress = function(id) {
-    console.log("press",id);
-    window.location.href = "http://www.w3schools.com";
+    if(initDone()) {
+        console.log("press",id);
+        window.location.href = "http://www.w3schools.com";
+    }
 }
 
 

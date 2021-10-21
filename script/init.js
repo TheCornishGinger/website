@@ -12,7 +12,7 @@ function isTouchDevice() {
     return false;
 }
 
-function pageInit() {
+function initDone() {
     return pageInitVar;
 }
 
@@ -30,6 +30,7 @@ function addInit(item) {
     }
     console.log("addInit()",item);
     if(result) {
+        if(isTouchDevice() || screen.width < 1000) { document.getElementsByClassName("page-wrap-inner")[0].style.maxWidth = "95%"; }
         document.getElementById("loader").style.display = "none";
         document.getElementById("content").style.display = "block";
         pageInitVar = true;
@@ -82,10 +83,6 @@ window.onload = function() {
 
     loadScripts(["header"]);
     loadStyles([tags[1]]);
-
-    if(isTouchDevice() || screen.width < 1000) {
-        document.getElementsByClassName("page-wrap-inner")[0].style.maxWidth = "95%";
-    }
 
     addInit("init");
 }
