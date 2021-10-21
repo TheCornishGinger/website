@@ -206,15 +206,16 @@ var buttonPress = function(id) {
 
 
 //INIT
-document.fonts.ready = function() {
-    if(isTouchDevice()) {
-        sideHeaderDOM.classList.add("mobile");
-        menuBtnInit(500);
-    }
-    else {
-        menuBtnDOM.style.visibility = "hidden";
-    }
-    updateHeaderSize();
+if(isTouchDevice()) {
+    sideHeaderDOM.classList.add("mobile");
+    menuBtnInit(500);
+}
+else {
+    menuBtnDOM.style.visibility = "hidden";
+}
+updateHeaderSize();
+
+document.fonts.onloadingdone = function() {
     addInit("header");
 }
 
