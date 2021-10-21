@@ -72,6 +72,12 @@ body {
   margin: 0 !important;
 }
 
+.blur-box {
+  background-color: rgba(10,10,10,0.6);
+  border: 2vw solid rgba(10,10,10,0);
+  border-radius: 5%;
+}
+
 .flex {
   display: flex;
 }
