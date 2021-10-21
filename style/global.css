@@ -74,7 +74,7 @@ body {
 
 .blur-box {
   background-color: rgba(10,10,10,0.6);
-  border: 2vw solid rgba(10,10,10,0);
+  border: var(--loader-size) solid rgba(10,10,10,0);
   border-radius: 5%;
 }
 
