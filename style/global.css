@@ -41,13 +41,13 @@ body {
 }
 
 @keyframes blurFadeIn {
-  from { filter: blur(10px); }
+  from { filter: blur(20px); }
   to { filter: none; }
 }
 
 #init-blur {
   animation-duration: 500ms;
-  filter: blur(10px);
+  filter: blur(20px);
   animation-fill-mode: forwards;
   overflow-y: hidden;
 }
