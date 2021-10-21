@@ -40,6 +40,7 @@ body {
 
 #content {
   display: none;
+  visibility: hidden;
 }
 
 .page-wrap {

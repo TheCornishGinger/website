@@ -30,9 +30,11 @@ function addInit(item) {
     }
     console.log("addInit()",item);
     if(result) {
+        console.log("Init complete");
         if(isTouchDevice() || screen.width < 1000) { document.getElementsByClassName("page-wrap-inner")[0].style.maxWidth = "95%"; }
         document.getElementById("loader").style.display = "none";
         document.getElementById("content").style.display = "block";
+        document.getElementById("content").style.visibility = "visible";
         pageInitVar = true;
     }
 }
