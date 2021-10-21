@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html id="html">
+<html>
     <head>
         <meta charset="utf-8">
         <link rel="icon" href="/resource/image/icon.ico" />
         <link rel="stylesheet" href="/style/global.css" />
-
-        <!--<title>TheCornishGinger - Home</title>-->
-        <link rel="stylesheet" href="/style/index.css" />
     </head>
 
-    <body id="body">
-        <div class="page-wrap-outer">
-            <div class="page-wrap-inner">
-                <p class="text large">The home of</p>
-                <img class="image" src="/resource/image/logo.gif" />
-                <p class="text medium">
-                    This is my personal site where I like to host a whole load of random ass stuff. 
-                    I trust you will enjoy searching through my unfinished, unpolished and mostly 
-                    useless creations!
-                </p>
+    <body>
+        <div id="loader">
+            <div class="vertical-center">
+                <div><img id="loader-image" src="/resource/image/loader.gif" /></div>
+                <p id="loader-text" class="no-margin">Loading</p>
             </div>
         </div>
-        
+
+        <div id="content">
+            <div class="page-wrap">
+                <div class="vertical-center">
+                    <p class="text large">The home of</p>
+                    <img class="image" src="/resource/image/logo.gif" />
+                    <p class="text medium">
+                        This is my personal site where I like to host a whole load of random ass stuff. 
+                        I trust you will enjoy searching through my unfinished, unpolished and mostly 
+                        useless creations!
+                    </p>
+                </div>
+            </div>
+        </div>
     </body>
-    <script title="Home" src="/script/init.js"></script>
+
+    <script title="Home" stylesheet="index" src="/script/init.js"></script>
 </html>

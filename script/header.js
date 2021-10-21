@@ -10,7 +10,7 @@ ajax.onload = function() {
         console.error(ajax.statusText);
     }
 }
-document.body.innerHTML = ajax.responseText+document.body.innerHTML;
+document.getElementById("content").innerHTML = ajax.responseText + document.getElementById("content").innerHTML;
 
 
 
@@ -209,13 +209,13 @@ var buttonHover = function(id) {
 }
 
 var buttonPress = function(id) {
+    console.log("press",id);
     window.location.href = "http://www.w3schools.com";
 }
 
 
+
 init();
-
-
 
 /* DEPRECATED
 var animationActive = false;
