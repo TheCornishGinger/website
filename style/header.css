@@ -17,6 +17,11 @@
   --header-size: 80px;
 }
 
+@font-face {
+  font-family: 'reklame';
+  src: url('/resource/font/reklame-script.otf');
+}
+
 .placeholder-top {
   height: var(--header-size);
   width: 100%;

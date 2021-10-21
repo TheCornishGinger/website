@@ -82,9 +82,8 @@ let setTitle = function(title) {
 // INIT
 window.onload = function() {
     if(isTouchDevice() || screen.width < 1000) {
-        console.log("small");
         document.documentElement.style.setProperty("--max-width","95%");
-        document.documentElement.style.setProperty("--header-size","50%"); 
+        document.documentElement.style.setProperty("--loader-size","30vw"); 
     }
     let tags = getTags(["title","stylesheet"]);
 
@@ -93,5 +92,5 @@ window.onload = function() {
     loadScripts(["header"]);
     loadStyles([tags[1]]);
 
-    addInit("init");
+    //addInit("init");
 }

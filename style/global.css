@@ -105,8 +105,3 @@ body {
   font-family: 'monospace';
   src: url('/resource/font/monospace.ttf');
 }
-
-@font-face {
-  font-family: 'reklame';
-  src: url('/resource/font/reklame-script.otf');
-}
