@@ -25,14 +25,13 @@ body {
   position: absolute;
   display: flex;
   z-index: 2;
+  animation-duration: 500ms;
+  animation-iteration-count: forwards;
 }
 
 #loader-image {
   height: var(--loader-size);
   image-rendering: pixelated;
-  animation-name: none;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
 }
 
 @keyframes loaderAnimation {
@@ -43,6 +42,11 @@ body {
 @keyframes blurFadeIn {
   from { filter: blur(20px); }
   to { filter: none; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 #init-blur {

@@ -31,11 +31,12 @@ function addInit(item) {
     console.log("addInit()",item);
     if(result) {
         console.log("Init complete");
-        document.getElementById("loader").style.display = "none";
+        document.getElementById("loader").style.animationName = "fadeOut";
         document.getElementById("init-blur").style.animationName = "blurFadeIn";
         setTimeout(function() {
             document.getElementById("init-blur").style.removeProperty("filter");
             document.getElementById("init-blur").style.removeProperty("overflow-y");
+            document.getElementById("loader").style.display = "none";
         },500);
         pageInitVar = true;
     }
