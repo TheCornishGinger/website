@@ -117,6 +117,7 @@
 }
 .box-image.logo {
   width: inherit !important;
+  image-rendering: auto !important;
 }
 
 .box-text {
