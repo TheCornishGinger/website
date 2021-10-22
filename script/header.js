@@ -209,7 +209,11 @@ var buttonUnhover = function(btnID) {
 var buttonPress = function(id) {
     if(initDone()) {
         console.log("press",id);
-        //window.location.href = "/style";
+        if(id == "index") {
+            window.location.href = "/";
+        }
+        else { window.location.href = "/"+id; }
+        
     }
 }
 
