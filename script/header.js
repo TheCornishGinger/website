@@ -157,6 +157,8 @@ let menuBtnInit = function(delay) {
 
 let menuBtn = function() {
     if(!headerOpen) {
+        document.getElementsByClassName("page-wrap")[0].style.animationName = "blurFadeIn";
+        document.getElementsByClassName("page-wrap")[0].classList.add("blur");
         menuBtnDOM.style.animationName = "openMenuBtnColor";
         menuBtnWrapClosedDOM.style.animationName = "openMobileMenuOne";
         menuBtnClosedDOM[0].style.animationName = "openMenuBorderColor";
@@ -172,11 +174,13 @@ let menuBtn = function() {
         headerOpen = true;
     }
     else {
+        document.getElementsByClassName("page-wrap")[0].style.animationName = "blurFadeOut";
         menuBtnDOM.style.animationName = "closeMenuBtnColor";
         sideHeaderDOM.style.animationName = "closeSideHeaderMobile";
         menuBtnOpenDOM[0].style.animationName = "closeMobileMenuTwo";
         menuBtnOpenDOM[1].style.animationName = "closeMobileMenuThree";
         setTimeout(function() {
+            document.getElementsByClassName("page-wrap")[0].classList.remove("blur");
             menuBtnClosedDOM[0].style.animationName = "closeMenuBorderColor";
             menuBtnClosedDOM[1].style.animationName = "closeMenuBorderColor";
             menuBtnClosedDOM[2].style.animationName = "closeMenuBorderColor";
@@ -190,16 +194,22 @@ let menuBtn = function() {
 
 
 
-var buttonHover = function(id) {
+var buttonHover = function(btnID) {
     if(initDone()) {
-        console.log("hover",id);
+        document.getElementById(btnID+"-btn").style.filter = "brightness(75%)";
+    }
+}
+
+var buttonUnhover = function(btnID) {
+    if(initDone()) {
+        document.getElementById(btnID+"-btn").style.filter = "brightness(100%)";
     }
 }
 
 var buttonPress = function(id) {
     if(initDone()) {
         console.log("press",id);
-        window.location.href = "http://www.w3schools.com";
+        //window.location.href = "/style";
     }
 }
 

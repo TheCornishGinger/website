@@ -9,7 +9,7 @@
         <div class="top-header-wrap outer">
             <div class="top-header-wrap inner">
                 <div class="box header logo">
-                    <img src="/resource/header/logo.png" class="box-image" />
+                    <img src="/resource/header/logo.png" class="box-image logo" />
                 </div>
                 <p class="title">TheCornishGinger</p>
                 <div class="smallTitle">
@@ -34,16 +34,16 @@
     <div class="side-header" id="side-header">
         <div class="side-header-wrap outer">
             <div class="side-header-wrap inner">
-                <div class="box side games" onmouseover="buttonHover('games')" onclick="buttonPress('games')">
+                <div class="box side games" onmouseover="buttonHover('games')" onclick="buttonPress('games')" onmouseleave="buttonUnhover('games')" id="games-btn">
                     <img src="/resource/header/menu_games.png" class="box-image" />
                     <p class="box-text">Games</p>
                 </div>
-                <div class="box side projects" onmouseover="buttonHover('projects')" onclick="buttonPress('projects')">
-                    <img src="/resource/header/menu_games.png" class="box-image" />
+                <div class="box side projects" onmouseover="buttonHover('projects')" onclick="buttonPress('projects')" onmouseleave="buttonUnhover('projects')" id="projects-btn">
+                    <img src="/resource/header/menu_projects.png" class="box-image" />
                     <p class="box-text">Projects</p>
                 </div>
-                <div class="box side" onmouseover="buttonHover('bio')" onclick="buttonPress('bio')">
-                    <img src="/resource/header/menu_games.png" class="box-image" />
+                <div class="box side" onmouseover="buttonHover('bio')" onclick="buttonPress('bio')" onmouseleave="buttonUnhover('bio')" id="bio-btn">
+                    <img src="/resource/header/menu_bio.png" class="box-image" />
                     <p class="box-text">Bio</p>
                 </div>
             </div>

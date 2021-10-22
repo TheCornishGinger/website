@@ -39,9 +39,14 @@ body {
   to { transform: rotate(4turn); }
 }
 
-@keyframes blurFadeIn {
+@keyframes blurFadeOut {
   from { filter: blur(20px); }
-  to { filter: none; }
+  to { filter: blur(0); }
+}
+
+@keyframes blurFadeIn {
+  from { filter: blur(0); }
+  to { filter: blur(20px); }
 }
 
 @keyframes fadeOut {
@@ -49,8 +54,8 @@ body {
   to { opacity: 0; }
 }
 
-#init-blur {
-  animation-duration: 500ms;
+.blur {
+  animation-duration: 450ms;
   filter: blur(20px);
   animation-fill-mode: forwards;
   overflow-y: hidden;

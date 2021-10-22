@@ -1,6 +1,6 @@
 :root {
-  --menu-box-bgcolor: rgb(101, 146, 167);
-  --menu-box-highlight-bgcolor: rgb(128, 185, 211);
+  --menu-box-bgcolor: rgb(37, 102, 102);
+  --menu-box-highlight-bgcolor: rgb(52, 136, 136);
   --menu-box-color: var(--top-header-color);
 
   --menu-btn-width: 65%;
@@ -20,6 +20,11 @@
 @font-face {
   font-family: 'reklame';
   src: url('/resource/font/reklame-script.otf');
+}
+
+#header {
+  position: relative;
+  z-index: 1;
 }
 
 .placeholder-top {
@@ -102,11 +107,16 @@
   animation-fill-mode: forwards;
   background-color: var(--menu-box-bgcolor);
   margin-right: calc(var(--header-size) / 10) !important;
+  border-radius: 50% !important;
 }
 
 .box-image {
-  width: inherit;
-  margin-top: 1px;
+  width: 75%;
+  align-self: center;
+  image-rendering: pixelated;
+}
+.box-image.logo {
+  width: inherit !important;
 }
 
 .box-text {
@@ -115,6 +125,18 @@
   font-size: 2vw;
   color: inherit;
   text-align: center;
+}
+
+#games-btn {
+  background-color: rgb(85, 142, 81) !important;
+}
+
+#projects-btn {
+  background-color: rgb(145, 114, 82) !important;
+}
+
+#bio-btn {
+  background-color: var(--logo-color) !important;
 }
 
 #menu-btn-wrap-closed {
